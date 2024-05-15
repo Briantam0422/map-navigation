@@ -1,7 +1,5 @@
 import InputArea from "@/components/InputArea";
 import MapArea from "@/components/MapArea";
-import { Button } from "@nextui-org/react";
-import Image from "next/image";
 
 export default function Home() {
   return (

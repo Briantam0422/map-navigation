@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Input } from "@nextui-org/react";
+import { Button, Card, Input } from "@nextui-org/react";
 
 type InputAreaProps = {};
 
