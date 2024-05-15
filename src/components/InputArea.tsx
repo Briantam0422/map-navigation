@@ -4,8 +4,8 @@ type InputAreaProps = {};
 
 export default function InputArea(props: InputAreaProps) {
   return (
-    <div className="grid grid-rows-1 gap-5 p-20">
-      <Card className="p-10">
+    <div className="p-20">
+      <Card className="p-10 mb-8">
         <div className="grid grid-rows-1 gap-8">
           <h1 className="text-gray-500">
             Enter a starting location and a drop-off location

@@ -1,3 +1,33 @@
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { useMemo } from "react";
+
 export default function MapArea() {
-  return <div></div>;
+  const libraries = useMemo(() => ["places"], []);
+  const mapCenter = useMemo(() => ({ lat: 22.302711, lng: 114.177216 }), []);
+
+  const mapOptions = useMemo<google.maps.MapOptions>(
+    () => ({
+      disableDefaultUI: true,
+      clickableIcons: true,
+      scrollwheel: false,
+    }),
+    []
+  );
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY as string,
+    libraries: libraries as any,
+  });
+  if (!isLoaded) {
+    return <p>Loading...</p>;
+  }
+  return (
+    <GoogleMap
+      options={mapOptions}
+      zoom={14}
+      center={mapCenter}
+      mapTypeId={google.maps.MapTypeId.ROADMAP}
+      mapContainerStyle={{ width: "100%", height: "100%" }}
+      onLoad={() => console.log("Map Component Loaded...")}
+    />
+  );
 }
