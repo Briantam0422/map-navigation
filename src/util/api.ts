@@ -4,11 +4,11 @@ interface RequestProps {
     url : string;
 }
 
-interface GetRequestProps extends RequestProps {
-    params: string | string[][] | Record<string, string> | URLSearchParams | undefined
+export interface GetRequestProps extends RequestProps {
+    params?: string | string[][] | Record<string, string> | URLSearchParams | undefined
 }
-interface PostRequestProps extends RequestProps {
-    body: BodyInit | null | undefined;
+export interface PostRequestProps extends RequestProps {
+    body?: object;
 }
 
 const apiUrl = config.api_url
@@ -49,7 +49,7 @@ export async function postRequest({url, body}: PostRequestProps){
     const res = await fetch(url, {
         method: RequestMethod.POST,
         headers,
-        body
+        body: JSON.stringify(body)
     })
     const {data, errors} = await res.json()
     if (res.ok) {
