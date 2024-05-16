@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
+import TanStackQueryProvider from "@/providers/TanStackQueryProvider";
 
-type RootLayoutProps = Readonly<{
+export type RootLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>
-        <NextUIProvider>{children}</NextUIProvider>
+        <TanStackQueryProvider>
+          <NextUIProvider>{children}</NextUIProvider>
+        </TanStackQueryProvider>
       </body>
     </html>
   );
