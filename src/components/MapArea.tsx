@@ -1,3 +1,4 @@
+import { config } from "@/config/app";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
 
@@ -14,7 +15,7 @@ export default function MapArea() {
     []
   );
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY as string,
+    googleMapsApiKey: config.google_map_key as string,
     libraries: libraries as any,
   });
   if (!isLoaded) {

@@ -1,3 +1,5 @@
+import { config } from "@/config/app";
+
 interface RequestProps {
     url : string;
 }
@@ -9,9 +11,15 @@ interface PostRequestProps extends RequestProps {
     body: BodyInit | null | undefined;
 }
 
+const apiUrl = config.api_url
+
 const RequestMethod = {
     GET: "GET",
     POST: "POST"
+}
+
+function getUrl(url: string){
+    return apiUrl + url
 }
 
 function getHeader(){
@@ -21,7 +29,7 @@ function getHeader(){
 }
 
 export async function getRequest({url, params}: GetRequestProps){
-    url = url + new URLSearchParams(params)
+    url = getUrl(url) + new URLSearchParams(params)
     const headers = getHeader();
     const res = await fetch(url, {
         method: RequestMethod.GET,
@@ -36,6 +44,7 @@ export async function getRequest({url, params}: GetRequestProps){
 }
 
 export async function postRequest({url, body}: PostRequestProps){
+    url = getUrl(url)
     const headers = getHeader();
     const res = await fetch(url, {
         method: RequestMethod.POST,
