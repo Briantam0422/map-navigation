@@ -17,32 +17,6 @@ export default function FormInputRoute() {
   const store = useAppStore();
   const routeState = useAppSelector((state) => state.route);
   const [loading, setLoading] = useState<boolean>(false);
-  const { error, mutate } = useMutation({
-    mutationFn: (route: ReqPostRouteProps) => {
-      return postRoute(route);
-    },
-    onError: (error) => {
-      setLoading(false);
-    },
-    onSuccess: async ({ token }: DataPostRouteProps) => {
-      store.dispatch(setToken(token));
-      if (routeState.token) {
-        result.refetch();
-      }
-      setLoading(false);
-    },
-  });
-  const onSubmitFormRouteRequest = async (
-    event: FormEvent<HTMLFormElement>
-  ) => {
-    setLoading(true);
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    mutate({
-      origin: formData.get("origin") ?? "",
-      destination: formData.get("destination") ?? "",
-    });
-  };
   const result = useQuery({
     enabled: routeState.token != "" && routeState.token != null,
     queryKey: ["route", routeState.token],
@@ -71,10 +45,43 @@ export default function FormInputRoute() {
       return true;
     },
   });
+  const { error, mutate } = useMutation({
+    mutationFn: (route: ReqPostRouteProps) => {
+      return postRoute(route);
+    },
+    onError: (error) => {
+      setLoading(false);
+    },
+    onSuccess: async ({ token }: DataPostRouteProps) => {
+      store.dispatch(setToken(token));
+      if (routeState.token) {
+        result.refetch();
+      }
+      setLoading(false);
+    },
+  });
+  const onSubmitFormRouteRequest = async (
+    event: FormEvent<HTMLFormElement>
+  ) => {
+    setLoading(true);
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    mutate({
+      origin: formData.get("origin") ?? "",
+      destination: formData.get("destination") ?? "",
+    });
+  };
+  const onResetFormRouteRequest = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.currentTarget.reset();
+  };
+
   return (
     <div className="p-10 lg:p-20">
       <Card className="p-10 mb-8">
-        <form onSubmit={onSubmitFormRouteRequest}>
+        <form
+          onSubmit={onSubmitFormRouteRequest}
+          onReset={onResetFormRouteRequest}>
           <div className="grid grid-rows-1 gap-8">
             <h1 className="text-gray-500">
               Enter a starting location and a drop-off location
@@ -118,7 +125,11 @@ export default function FormInputRoute() {
               <Button isLoading={loading} type="submit" color="primary">
                 Submit
               </Button>
-              <Button isLoading={loading} color="default" variant="light">
+              <Button
+                isLoading={loading}
+                type="reset"
+                color="default"
+                variant="light">
                 Reset
               </Button>
             </div>
