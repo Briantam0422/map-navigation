@@ -12,7 +12,7 @@ export default function RouteInformation(props: RouteInformationProps) {
         <h1 className="text-gray-500 mb-4">Route Information</h1>
         <div className="flex justify-between align-middle">
           <div>Total Distance</div>
-          <div>{props.total_distance}km</div>
+          <div>{props.total_distance} km</div>
         </div>
         <div className="flex justify-between align-middle">
           <div>Total Time</div>

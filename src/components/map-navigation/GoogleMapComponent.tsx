@@ -16,7 +16,7 @@ type Waypoint = {
   stopover: boolean;
 };
 
-export default function RenderMap() {
+export default function GoogleMapComponent() {
   const mapCenter = useMemo(() => ({ lat: 22.302711, lng: 114.177216 }), []);
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({

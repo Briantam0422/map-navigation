@@ -12,6 +12,7 @@ import { setToken, initialRoute } from "@/store/slices/routeSlice";
 import toast from "react-hot-toast";
 import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
+import AutocompleteInputPlace from "./AutocompleteInputPlace";
 
 export default function FormInputRoute() {
   const store = useAppStore();
@@ -67,6 +68,8 @@ export default function FormInputRoute() {
     setLoading(true);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    console.log(formData.get("origin"));
+    console.log(formData.get("destination"));
     mutate({
       origin: formData.get("origin") ?? "",
       destination: formData.get("destination") ?? "",
@@ -85,42 +88,26 @@ export default function FormInputRoute() {
           onReset={onResetFormRouteRequest}>
           <div className="grid grid-rows-1 gap-8">
             <h1 className="text-gray-500">
-              Enter a starting location and a drop-off location
+              Enter a pick-up location and a drop-off location
             </h1>
-            <Input
-              isClearable
-              label="Starting Location"
+            <AutocompleteInputPlace
               name="origin"
-              isRequired
-              defaultValue="Innocentre, Hong Kong"
+              label="Pick-up Location"
+              placeholder="Search a pick-up location"
             />
-            <Input
-              isClearable
-              label="Drop-off Location"
+            <AutocompleteInputPlace
               name="destination"
-              isRequired
-              defaultValue="Hong Kong International Airport Terminal 1"
+              label="Drop-off Location"
+              placeholder="Search a drop-off location"
             />
-            {result.isFetching ? (
-              <CardMessage
-                type="info"
-                message="Finding the best path for you"
-              />
-            ) : (
-              ""
-            )}
-            {result.isRefetching ? (
+            {result.isFetching && (
               <CardMessage
                 type="warning"
                 message="Please wait! We are trying the best to find the best path for you."
               />
-            ) : (
-              ""
             )}
-            {result.data?.error && !result.isFetching ? (
+            {result.data?.error && !result.isFetching && (
               <CardMessage type="error" message={result.data.error} />
-            ) : (
-              ""
             )}
             <div className="flex gap-4">
               <Button isLoading={loading} type="submit" color="primary">
@@ -137,13 +124,11 @@ export default function FormInputRoute() {
           </div>
         </form>
       </Card>
-      {result.data?.total_distance && result.data.total_time ? (
+      {result.data?.total_distance && result.data.total_time && (
         <RouteInformation
           total_distance={result.data.total_distance}
           total_time={result.data.total_time}
         />
-      ) : (
-        ""
       )}
     </div>
   );
