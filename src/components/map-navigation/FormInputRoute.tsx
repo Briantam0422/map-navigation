@@ -4,11 +4,11 @@ import {
   postRoute,
   ReqPostRouteProps,
 } from "@/api/route";
-import { Button, Card, CardBody, Input, Snippet } from "@nextui-org/react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Button, Card, Input } from "@nextui-org/react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
 import { useAppSelector, useAppStore } from "@/store/hooks";
-import { setToken, initialRoute } from "@/store/slices/routeSlice";
+import { setToken } from "@/store/slices/routeSlice";
 import toast from "react-hot-toast";
 import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";

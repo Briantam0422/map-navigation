@@ -1,5 +1,4 @@
 import { Card, CardBody } from "@nextui-org/react";
-import result from "postcss/lib/result";
 
 type CardErrorProps = {
   message: string;
