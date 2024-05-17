@@ -1,5 +1,4 @@
 import {
-  DataGetRouteProps,
   DataPostRouteProps,
   getRoute,
   postRoute,
@@ -8,14 +7,16 @@ import {
 import { Button, Card, Input } from "@nextui-org/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
-import { ReqGetRouteProps } from "../api/route";
+import { useAppSelector, useAppStore } from "@/store/hooks";
+import { setToken } from "@/store/slices/routeSlice";
 
 type InputAreaProps = {};
 
 export default function InputArea(props: InputAreaProps) {
+  const store = useAppStore();
+  const routeState = useAppSelector((state) => state.route);
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState<boolean>(false);
-  const [token, setToken] = useState<string>("");
   const { error, mutate } = useMutation({
     mutationFn: (route: ReqPostRouteProps) => {
       console.log(route);
@@ -27,7 +28,7 @@ export default function InputArea(props: InputAreaProps) {
     },
     onSuccess: async ({ token }: DataPostRouteProps) => {
       console.log("Submit success");
-      setToken(token);
+      store.dispatch(setToken(token));
       queryClient.refetchQueries({
         queryKey: ["route", token],
       });
@@ -45,16 +46,16 @@ export default function InputArea(props: InputAreaProps) {
     });
   };
   const result = useQuery({
-    enabled: token != "",
-    queryKey: ["route", token],
+    enabled: routeState.token != "",
+    queryKey: ["route", routeState.token],
     queryFn: async () => {
       setLoading(true);
-      const data = await getRoute({ token });
+      const data = await getRoute({ token: routeState.token });
       console.log("data: ", data);
       if (data.status === "in progress") {
         console.log("in progress");
         queryClient.refetchQueries({
-          queryKey: ["route", token],
+          queryKey: ["route", routeState.token],
         });
       } else {
         setLoading(false);
