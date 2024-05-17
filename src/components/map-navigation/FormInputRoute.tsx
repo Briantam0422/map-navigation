@@ -103,7 +103,7 @@ export default function FormInputRoute() {
             {result.isFetching && (
               <CardMessage
                 type="warning"
-                message="Please wait! We are trying the best to find the best path for you."
+                message="Please wait. We are trying to find the best route for you."
               />
             )}
             {result.data?.error && !result.isFetching && (

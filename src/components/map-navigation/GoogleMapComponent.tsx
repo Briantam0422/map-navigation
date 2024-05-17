@@ -43,7 +43,7 @@ export default function GoogleMapComponent() {
     });
 
   useEffect(() => {
-    if (routeState.path.length > 0) {
+    if (routeState.path && routeState.path.length > 0) {
       const paths = routeState.path;
       const origin = { lat: Number(paths[0][0]), lng: Number(paths[0][1]) };
       const destination = {
