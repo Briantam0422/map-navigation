@@ -25,7 +25,6 @@ export default function FormInputRoute() {
       setLoading(true);
       const data = await getRoute({ token: routeState.token });
       if (data) {
-        setLoading(true);
         if (data.status === "in progress") {
           result.status = "error";
         } else {
@@ -68,8 +67,6 @@ export default function FormInputRoute() {
     setLoading(true);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log(formData.get("origin"));
-    console.log(formData.get("destination"));
     mutate({
       origin: formData.get("origin") ?? "",
       destination: formData.get("destination") ?? "",
