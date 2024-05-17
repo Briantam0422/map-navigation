@@ -18,12 +18,12 @@ export type DataPostRouteProps = {
     token: string
 }
 export async function getRoute({token}: ReqGetRouteProps){
-    const url = "/route/" + token
+    const url = "/mock/route/success"
     const data: DataGetRouteProps = await getRequest({url})
     return data
 }
 export async function postRoute(body: ReqPostRouteProps){
-    const url = "/route"
+    const url = "/mock/route/success"
     const data:DataPostRouteProps = await postRequest({url, body})
     return data
 }

@@ -1,3 +1,4 @@
+import { DataGetRouteProps } from "@/api/route";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { stat } from "fs";
@@ -23,8 +24,7 @@ export const routeSlice = createSlice({
     name: "route",
     initialState,
     reducers: {
-        initialRoute: (state, action: PayloadAction<RouteState>) => {
-            state.token = action.payload.token
+        initialRoute: (state, action: PayloadAction<DataGetRouteProps>) => {
             state.status = action.payload.status
             state.path = action.payload.path
             state.total_distance = action.payload.total_distance

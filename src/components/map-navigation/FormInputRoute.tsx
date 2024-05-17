@@ -8,7 +8,7 @@ import { Button, Card, Input } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
 import { useAppSelector, useAppStore } from "@/store/hooks";
-import { setToken } from "@/store/slices/routeSlice";
+import { setToken, initialRoute } from "@/store/slices/routeSlice";
 import toast from "react-hot-toast";
 import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
@@ -28,6 +28,7 @@ export default function FormInputRoute() {
         if (data.status === "in progress") {
           result.status = "error";
         } else {
+          store.dispatch(initialRoute(data));
           setLoading(false);
           return data;
         }
