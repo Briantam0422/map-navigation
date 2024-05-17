@@ -72,7 +72,7 @@ export default function FormInputRoute() {
     },
   });
   return (
-    <div className="p-20">
+    <div className="p-10 lg:p-20">
       <Card className="p-10 mb-8">
         <form onSubmit={onSubmitFormRouteRequest}>
           <div className="grid grid-rows-1 gap-8">

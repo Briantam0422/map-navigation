@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       <Toaster />
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
         <FormInputRoute />
         <MapArea />
       </div>

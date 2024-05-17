@@ -27,7 +27,7 @@ export default function MapArea() {
       zoom={14}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
-      mapContainerStyle={{ width: "100%", height: "100%" }}
+      mapContainerStyle={{ width: "100%", minHeight: "100vh" }}
       onLoad={() => console.log("Map Component Loaded...")}
     />
   );
