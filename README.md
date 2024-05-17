@@ -5,3 +5,5 @@ Tech:
 - NextUI
 - TanQuery
 - Google Map API
+- React hot toast
+- Redux

@@ -1,4 +1,5 @@
 import { config } from "@/config/app";
+import toast from "react-hot-toast";
 
 interface RequestProps {
     url : string;
@@ -35,15 +36,13 @@ export async function getRequest({url, params}: GetRequestProps){
             method: RequestMethod.GET
         })
         const data = await res.json()
-        console.log(data)
         if (res.ok) {
-            return data
-        } else {
-            return 'error'
+            if (data.error) toast.error(data.error)
         }
-    } catch (error) {
-        console.log(error)
-        return error
+        return data
+    } catch (e) {
+        toast.error('Server Error, please try again')
+        return null
     }
 }
 
@@ -58,13 +57,12 @@ export async function postRequest({url, body}: PostRequestProps){
         })
         const data = await res.json()
         if (res.ok) {
-            return data
-        } else {
-            return 'error'
+            if (data.error) toast.error(data.error)
         }
-    } catch(error) {
-        console.log(error)
-        return error
+        return data
+    } catch(e) {
+        toast.error('Server Error, please try again')
+        return null
     }
     
 }
