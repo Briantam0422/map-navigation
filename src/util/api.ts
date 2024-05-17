@@ -24,37 +24,47 @@ function getUrl(url: string){
 
 function getHeader(){
     return {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
     }
 }
 
 export async function getRequest({url, params}: GetRequestProps){
     url = getUrl(url) + new URLSearchParams(params)
-    const headers = getHeader();
-    const res = await fetch(url, {
-        method: RequestMethod.GET,
-        headers
-    })
-    const {data, errors} = await res.json()
-    if (res.ok) {
-        return data
-    } else {
-        return Promise.reject(errors)
+    try {
+        const res = await fetch(url, {
+            method: RequestMethod.GET
+        })
+        const data = await res.json()
+        console.log(data)
+        if (res.ok) {
+            return data
+        } else {
+            return 'error'
+        }
+    } catch (error) {
+        console.log(error)
+        return error
     }
 }
 
 export async function postRequest({url, body}: PostRequestProps){
     url = getUrl(url)
     const headers = getHeader();
-    const res = await fetch(url, {
-        method: RequestMethod.POST,
-        headers,
-        body: JSON.stringify(body)
-    })
-    const {data, errors} = await res.json()
-    if (res.ok) {
-        return data
-    } else {
-        return Promise.reject(errors)
+    try {
+        const res = await fetch(url, {
+            method: RequestMethod.POST,
+            headers,
+            body: JSON.stringify(body)
+        })
+        const data = await res.json()
+        if (res.ok) {
+            return data
+        } else {
+            return 'error'
+        }
+    } catch(error) {
+        console.log(error)
+        return error
     }
+    
 }

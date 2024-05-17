@@ -7,17 +7,18 @@ export type DataGetRouteProps = {
     status: string,
     path: Array<Array<number>>,
     total_distance: number,
-    total_time: number
+    total_time: number,
+    error?: string
 }
 export type ReqPostRouteProps = {
-    origin: string,
-    destination: string
+    origin: string | FormDataEntryValue,
+    destination: string | FormDataEntryValue
 }
 export type DataPostRouteProps = {
     token: string
 }
 export async function getRoute({token}: ReqGetRouteProps){
-    const url = "route/:" + token
+    const url = "/route/" + token
     const data: DataGetRouteProps = await getRequest({url})
     return data
 }
