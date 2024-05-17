@@ -1,6 +1,6 @@
 "use client";
 import FormInputRoute from "@/components/map-navigation/FormInputRoute";
-import MapArea from "@/components/MapArea";
+import MapArea from "@/components/map-navigation/MapArea";
 import { Toaster } from "react-hot-toast";
 
 export default function Home() {

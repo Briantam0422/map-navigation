@@ -10,7 +10,7 @@ import { FormEvent, useState } from "react";
 import { useAppSelector, useAppStore } from "@/store/hooks";
 import { setToken, initialRoute } from "@/store/slices/routeSlice";
 import toast from "react-hot-toast";
-import CardMessage from "./CardMessage";
+import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
 
 export default function FormInputRoute() {
