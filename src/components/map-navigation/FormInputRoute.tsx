@@ -45,7 +45,7 @@ export default function FormInputRoute() {
       return true;
     },
   });
-  const { error, mutate } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (route: ReqPostRouteProps) => {
       return postRoute(route);
     },
