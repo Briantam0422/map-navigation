@@ -4,9 +4,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AutocompleteInputPlace from "@/components/map-navigation/AutocompleteInputPlace";
 import usePlacesAutocomplete from "use-places-autocomplete";
-import userEvent from "@testing-library/user-event";
-
-const setValue = jest.fn();
 
 // Mocking usePlacesAutocomplete hook
 jest.mock("use-places-autocomplete");
@@ -14,6 +11,8 @@ jest.mock("use-places-autocomplete");
 const mockUsePlacesAutocomplete = usePlacesAutocomplete as jest.MockedFunction<
   typeof usePlacesAutocomplete
 >;
+
+const setValue = jest.fn();
 
 describe("AutocompleteInputPlace", () => {
   beforeEach(() =>
@@ -90,65 +89,41 @@ describe("AutocompleteInputPlace", () => {
 
       const input: HTMLInputElement =
         screen.getByPlaceholderText("Enter a location");
-      //   fireEvent.change(input, { target: { value: "New input" } });
-      await userEvent.type(input, "Inno");
-      expect(input.value).toBe("Inno");
-      //   setValue(input.value);
-
-      //   expect(setValue).toHaveBeenCalledWith("Inno");
+      fireEvent.input(input, { target: { value: "Inno" } });
+      expect(input).toHaveValue("Inno");
+      setValue(input.value);
+      expect(setValue).toHaveBeenCalledWith("Inno");
     });
 
-    // test("displays suggestions when data is available", () => {
-    //   const setValue = jest.fn();
-    //   render(
-    //     <AutocompleteInputPlace
-    //       name="location"
-    //       placeholder="Enter a location"
-    //       label="Location"
-    //     />
-    //   );
+    test("calls clearSuggestions on clear", () => {
+      const clearSuggestions = jest.fn();
+      mockUsePlacesAutocomplete.mockReturnValueOnce({
+        ready: true,
+        value: "",
+        suggestions: {
+          status: "OK",
+          data: [],
+          loading: false,
+        },
+        setValue: jest.fn(),
+        clearSuggestions,
+        clearCache: () => null,
+        init: () => [],
+      });
 
-    //   const input: HTMLInputElement =
-    //     screen.getByPlaceholderText("Enter a location");
-    // //   fireEvent.change(input, { target: { value: "Inno" } });
-    // //   setValue(input.value);
-    //   userEvent.type(input, "Inno")
+      render(
+        <AutocompleteInputPlace
+          name="location"
+          placeholder="Enter a location"
+          label="Location"
+        />
+      );
 
-    //   const suggestionDialog = screen.getAllByRole("dialog");
-    //   expect(suggestionDialog).toBeInTheDocument();
-    //   //   expect(suggestions[0]).toHaveTextContent("Place 1");
-    //   //   expect(suggestions[1]).toHaveTextContent("Place 2");
-    // });
+      const input = screen.getByPlaceholderText("Enter a location");
+      fireEvent.change(input, { target: { value: "Clear this" } });
+      fireEvent.click(screen.getAllByRole("button")[0]);
 
-    // test("calls clearSuggestions on clear", () => {
-    //   const clearSuggestions = jest.fn();
-    //   mockUsePlacesAutocomplete.mockReturnValueOnce({
-    //     ready: true,
-    //     value: "",
-    //     suggestions: {
-    //       status: "OK",
-    //       data: [],
-    //       loading: false,
-    //     },
-    //     setValue: jest.fn(),
-    //     clearSuggestions,
-    //     clearCache: () => null,
-    //     init: () => [],
-    //   });
-
-    //   render(
-    //     <AutocompleteInputPlace
-    //       name="location"
-    //       placeholder="Enter a location"
-    //       label="Location"
-    //     />
-    //   );
-
-    //   const input = screen.getByPlaceholderText("Enter a location");
-    //   fireEvent.change(input, { target: { value: "Clear this" } });
-    //   fireEvent.click(screen.getByRole("button", { name: /clear/i }));
-
-    //   expect(clearSuggestions).toHaveBeenCalled();
-    // });
+      expect(clearSuggestions).toHaveBeenCalled();
+    });
   });
 });
