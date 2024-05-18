@@ -55,7 +55,6 @@ export default function ButtonsApiTesting() {
       return data;
     },
     retry: (failCount) => {
-      console.log(failCount);
       if (failCount + 1 >= 1) {
         setLoading(true);
         setGetType("success");
