@@ -23,7 +23,7 @@ export default function ButtonsApiTesting() {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState<boolean>(false);
   const [submitType, setSubmitType] = useState<"success" | "error">("success");
   const [getType, setGetType] = useState<
-    "success" | "in_progress" | "failure" | "error"
+    "success" | "in progress" | "failure" | "error"
   >("success");
   const resultMock = useQuery({
     enabled: isSubmitSuccess,
@@ -41,10 +41,10 @@ export default function ButtonsApiTesting() {
         case RouteResponseStatus.in_progress:
           data = await getMockRouteInprogress();
           resultMock.status = "error";
-          resultMock.refetch();
           break;
         case RouteResponseStatus.failure:
           data = await getMockRouteFailure();
+          store.dispatch(initialRoute(data));
           setLoading(false);
           break;
         case RouteResponseStatus.error:
@@ -52,9 +52,11 @@ export default function ButtonsApiTesting() {
           setLoading(false);
           break;
       }
+      return data;
     },
     retry: (failCount) => {
-      if (failCount + 1 > 1) {
+      console.log(failCount);
+      if (failCount + 1 >= 1) {
         setLoading(true);
         setGetType("success");
         return true;
@@ -83,7 +85,7 @@ export default function ButtonsApiTesting() {
   });
 
   const onClickTesting = (
-    type: "success" | "in_progress" | "failure" | "error"
+    type: "success" | "in progress" | "failure" | "error"
   ) => {
     setLoading(true);
     setIsSubmitSuccess(false);
@@ -116,7 +118,7 @@ export default function ButtonsApiTesting() {
             type="button"
             variant="flat"
             color="warning"
-            onClick={() => onClickTesting("in_progress")}>
+            onClick={() => onClickTesting("in progress")}>
             Get In Progress
           </Button>
           <Button

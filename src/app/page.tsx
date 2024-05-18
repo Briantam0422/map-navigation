@@ -2,14 +2,16 @@
 import FormInputRoute from "@/components/map-navigation/FormInputRoute";
 import { config } from "@/config/app";
 import { Spinner } from "@nextui-org/react";
-import { useLoadScript } from "@react-google-maps/api";
+import { Libraries, useJsApiLoader } from "@react-google-maps/api";
 import { Toaster } from "react-hot-toast";
 import GoogleMapComponent from "@/components/map-navigation/GoogleMapComponent";
+import { useMemo } from "react";
 
 export default function Home() {
-  const { isLoaded } = useLoadScript({
+  const libraries = useMemo(() => ["places"], []);
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: config.google_map_key as string,
-    libraries: ["places"],
+    libraries: libraries as Libraries | undefined,
   });
   return (
     <main>

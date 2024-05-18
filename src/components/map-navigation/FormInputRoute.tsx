@@ -29,18 +29,25 @@ export default function FormInputRoute() {
       setLoading(true);
       const data = await getRoute({ token: routeState.token });
       if (data) {
-        if (data.status === RouteResponseStatus.in_progress) {
-          result.status = "error";
-        } else if (data.status === RouteResponseStatus.success) {
-          router.push("#google-map");
-          store.dispatch(initialRoute(data));
-          setLoading(false);
-          return data;
-        } else {
-          store.dispatch(initialRoute(data));
-          setLoading(false);
-          return data;
+        switch (data.status) {
+          case RouteResponseStatus.success:
+            store.dispatch(initialRoute(data));
+            router.push("#google-map");
+            setLoading(false);
+            break;
+          case RouteResponseStatus.in_progress:
+            result.status = "error";
+            break;
+          case RouteResponseStatus.failure:
+            store.dispatch(initialRoute(data));
+            setLoading(false);
+            break;
+          case RouteResponseStatus.error:
+            store.dispatch(initialRoute(data));
+            setLoading(false);
+            break;
         }
+        return data;
       } else {
         setLoading(false);
       }
@@ -112,8 +119,8 @@ export default function FormInputRoute() {
                 message="Finding the best route for you. Please wait :)"
               />
             )}
-            {result.data?.error && !result.isFetching && (
-              <CardMessage type="error" message={result.data.error} />
+            {routeState.error != "" && routeState.error != undefined && (
+              <CardMessage type="error" message={routeState.error} />
             )}
             <div className="flex gap-4">
               <Button isLoading={loading} type="submit" color="primary">
