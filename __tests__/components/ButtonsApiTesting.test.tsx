@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ButtonsApiTesting from "@/components/map-navigation/ButtonsApiTesting"; // Adjust the path as needed
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -70,13 +70,15 @@ describe("ButtonsApiTesting", () => {
       expect(screen.queryByText("Get Success")).not.toBeInTheDocument();
     });
 
-    test("calls mutate with correct parameters on button click", () => {
+    test("calls mutate with correct parameters on button click", async () => {
       render(<ButtonsApiTesting />);
       fireEvent.click(screen.getByText("Try Mock APIs"));
 
       const successButton = screen.getByText("Get Success");
-      fireEvent.click(successButton);
-      expect(mockMutate).toHaveBeenCalled();
+      await act(async () => {
+        fireEvent.click(successButton);
+        expect(mockMutate).toHaveBeenCalled();
+      });
     });
 
     test("Click Get Success Button and mutate for getting success mock API", async () => {
@@ -85,10 +87,12 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get Success"));
 
       // Simulate successful mutation
-      const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
-      const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
-      await mutationFn();
-      await onSuccess();
+      await act(async () => {
+        const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
+        const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
+        await mutationFn();
+        await onSuccess();
+      });
 
       expect(mockRefetch).toHaveBeenCalled();
     });
@@ -99,10 +103,12 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get In Progress"));
 
       // Simulate successful mutation
-      const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
-      const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
-      await mutationFn();
-      await onSuccess();
+      await act(async () => {
+        const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
+        const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
+        await mutationFn();
+        await onSuccess();
+      });
 
       expect(mockRefetch).toHaveBeenCalled();
     });
@@ -113,10 +119,12 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get Failure"));
 
       // Simulate successful mutation
-      const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
-      const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
-      await mutationFn();
-      await onSuccess();
+      await act(async () => {
+        const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
+        const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
+        await mutationFn();
+        await onSuccess();
+      });
 
       expect(mockRefetch).toHaveBeenCalled();
     });
@@ -127,10 +135,12 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get Error"));
 
       // Simulate successful mutation
-      const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
-      const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
-      await mutationFn();
-      await onSuccess();
+      await act(async () => {
+        const mutationFn = mockUseMutation.mock.calls[0][0].mutationFn;
+        const onSuccess = mockUseMutation.mock.calls[0][0].onSuccess;
+        await mutationFn();
+        await onSuccess();
+      });
 
       expect(mockRefetch).toHaveBeenCalled();
     });
@@ -141,8 +151,10 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get Success"));
 
       // Simulate successful query
-      const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
-      await queryFn();
+      await act(async () => {
+        const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
+        await queryFn();
+      });
 
       expect(mockDispatch).toHaveBeenCalled();
       expect(mockRouterPush).toHaveBeenCalled();
@@ -150,16 +162,22 @@ describe("ButtonsApiTesting", () => {
 
     test("Test In progress API Retry Query", async () => {
       render(<ButtonsApiTesting />);
-      fireEvent.click(screen.getByText("Try Mock APIs"));
-      fireEvent.click(screen.getByText("Get In Progress"));
+      const btnTryMockApis = await screen.findByText("Try Mock APIs");
+      act(() => {
+        fireEvent.click(btnTryMockApis);
+      });
 
-      // Simulate inprogress query
-      const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
-      await queryFn();
+      const btnGetInProgress = await screen.findByText("Get In Progress");
+      await act(async () => {
+        fireEvent.click(btnGetInProgress);
+        // Simulate inprogress query
+        const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
+        await queryFn();
 
-      // Simulate retry call
-      const retry = mockUseQuery.mock.calls[0][0].retry;
-      await retry();
+        // Simulate retry call
+        const retry = mockUseQuery.mock.calls[0][0].retry;
+        await retry();
+      });
 
       expect(mockDispatch).toHaveBeenCalled();
       expect(mockRouterPush).toHaveBeenCalled();
@@ -171,8 +189,10 @@ describe("ButtonsApiTesting", () => {
       fireEvent.click(screen.getByText("Get Failure"));
 
       // Simulate Failure query
-      const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
-      await queryFn();
+      await act(async () => {
+        const queryFn = mockUseQuery.mock.calls[0][0].queryFn;
+        await queryFn();
+      });
 
       expect(mockDispatch).toHaveBeenCalled();
     });
