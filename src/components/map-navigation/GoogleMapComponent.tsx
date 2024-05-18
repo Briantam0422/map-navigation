@@ -76,8 +76,6 @@ export default function GoogleMapComponent() {
       if (result !== null) {
         if (status === "OK") {
           setResponse(result);
-        } else {
-          console.log("response: ", result);
         }
       }
     },
@@ -111,8 +109,7 @@ export default function GoogleMapComponent() {
       zoom={12}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
-      mapContainerStyle={{ width: "100%", minHeight: "100vh" }}
-      onLoad={() => console.log("Map Component Loaded...")}>
+      mapContainerStyle={{ width: "100%", minHeight: "100vh" }}>
       {directionsFormValue.destination !== "" &&
         directionsFormValue.origin !== "" && (
           <DirectionsService
