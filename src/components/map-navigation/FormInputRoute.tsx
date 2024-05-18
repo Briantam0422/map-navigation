@@ -4,7 +4,7 @@ import {
   postRoute,
   ReqPostRouteProps,
 } from "@/api/route";
-import { Button, Card, Input } from "@nextui-org/react";
+import { Button, Card } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
 import { useAppSelector, useAppStore } from "@/store/hooks";
@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
 import AutocompleteInputPlace from "./AutocompleteInputPlace";
+import ButtonsApiTesting from "./ButtonsApiTesting";
 
 export default function FormInputRoute() {
   const store = useAppStore();
@@ -54,11 +55,11 @@ export default function FormInputRoute() {
       setLoading(false);
     },
     onSuccess: async ({ token }: DataPostRouteProps) => {
+      setLoading(false);
       store.dispatch(setToken(token));
       if (routeState.token) {
         result.refetch();
       }
-      setLoading(false);
     },
   });
   const onSubmitFormRouteRequest = async (
@@ -100,7 +101,7 @@ export default function FormInputRoute() {
             {result.isFetching && (
               <CardMessage
                 type="warning"
-                message="Please wait. We are trying to find the best route for you."
+                message="Finding the best route for you. Please wait :)"
               />
             )}
             {result.data?.error && !result.isFetching && (
@@ -118,6 +119,7 @@ export default function FormInputRoute() {
                 Reset
               </Button>
             </div>
+            <ButtonsApiTesting />
           </div>
         </form>
       </Card>
