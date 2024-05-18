@@ -76,7 +76,7 @@ export default function ButtonsApiTesting() {
       setLoading(false);
       setIsSubmitSuccess(false);
     },
-    onSuccess: async ({ token }: DataPostRouteProps) => {
+    onSuccess: async () => {
       setIsSubmitSuccess(true);
       setLoading(false);
       resultMock.refetch();
