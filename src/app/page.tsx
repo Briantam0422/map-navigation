@@ -22,7 +22,7 @@ export default function Home() {
           <GoogleMapComponent isLoaded={isLoaded} />
         </div>
       ) : (
-        <Spinner />
+        <Spinner data-testid="spinner-loading" />
       )}
     </main>
   );

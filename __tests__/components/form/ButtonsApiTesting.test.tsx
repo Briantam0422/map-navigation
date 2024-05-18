@@ -4,7 +4,6 @@ import ButtonsApiTesting from "@/components/map-navigation/form/ButtonsApiTestin
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/store/hooks";
-import { retry } from "@reduxjs/toolkit/query";
 
 // Mock dependencies
 jest.mock("@tanstack/react-query", () => ({

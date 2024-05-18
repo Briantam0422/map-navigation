@@ -1,10 +1,9 @@
 import React from "react";
-import { getByTestId, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom"; // Import this to use the toBeInTheDocument matcher
 import GoogleMapComponent from "@/components/map-navigation/google-map/GoogleMapComponent";
 import { useAppSelector } from "@/store/hooks";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-// import { initialize } from "@googlemaps/jest-mocks";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 // Mock useAppSelector
 jest.mock("@/store/hooks", () => ({
@@ -22,9 +21,6 @@ jest.mock("@react-google-maps/api", () => ({
 }));
 
 describe("GoogleMapComponent", () => {
-  beforeEach(() => {
-    // initialize();
-  });
   it("renders GoogleMap when Google Maps API is loaded", () => {
     // Mock routeState.path
     (useAppSelector as unknown as jest.Mock).mockReturnValue({ path: [] });
