@@ -4,7 +4,7 @@
  */
 
 import type {Config} from 'jest';
-
+import nextJest from 'next/jest.js'
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -108,7 +108,7 @@ const config: Config = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: "ts-jest",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -143,7 +143,7 @@ const config: Config = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -152,7 +152,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -202,11 +202,4 @@ const config: Config = {
   // watchman: true,
 };
 
-export default config;
-function nextJest(arg0: {
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-  dir: string;
-}) {
-  throw new Error('Function not implemented.');
-}
-
+export default createJestConfig(config);
