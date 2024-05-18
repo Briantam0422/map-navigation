@@ -7,3 +7,4 @@ Tech:
 - Google Map API
 - React hot toast
 - Redux
+- Jest
