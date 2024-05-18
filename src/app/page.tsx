@@ -1,11 +1,11 @@
 "use client";
-import FormInputRoute from "@/components/map-navigation/FormInputRoute";
 import { config } from "@/config/app";
 import { Spinner } from "@nextui-org/react";
 import { Libraries, useJsApiLoader } from "@react-google-maps/api";
 import { Toaster } from "react-hot-toast";
-import GoogleMapComponent from "@/components/map-navigation/GoogleMapComponent";
+import GoogleMapComponent from "@/components/map-navigation/google-map/GoogleMapComponent";
 import { useMemo } from "react";
+import FormInputRoute from "@/components/map-navigation/form/FormInputRoute";
 
 export default function Home() {
   const libraries = useMemo(() => ["places"], []);
@@ -18,11 +18,11 @@ export default function Home() {
       <Toaster data-testid="global-toaster" />
       {isLoaded ? (
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <FormInputRoute data-testid="form-input-route" />
-          <GoogleMapComponent data-testid="google-map-component" />
+          <FormInputRoute />
+          <GoogleMapComponent isLoaded={isLoaded} />
         </div>
       ) : (
-        <Spinner data-testid="loading-spinner" />
+        <Spinner />
       )}
     </main>
   );

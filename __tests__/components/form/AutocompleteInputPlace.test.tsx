@@ -2,7 +2,7 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import AutocompleteInputPlace from "@/components/map-navigation/AutocompleteInputPlace";
+import AutocompleteInputPlace from "@/components/map-navigation/form/AutocompleteInputPlace";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
 // Mocking usePlacesAutocomplete hook

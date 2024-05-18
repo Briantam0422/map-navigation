@@ -1,10 +1,6 @@
 import { useAppSelector } from "@/store/hooks";
-import {
-  GoogleMap,
-  DirectionsService,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { DirectionsService, DirectionsRenderer } from "@react-google-maps/api";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 type Location = {
   lat: number;
@@ -16,32 +12,21 @@ type Waypoint = {
   stopover: boolean;
 };
 
-export default function GoogleMapComponent() {
+export default function GoogleGapDirections() {
+  const routeState = useAppSelector((state) => state.route);
+
   const initialDirectionFormValue = {
     origin: { lat: 0, lng: 0 },
     destination: { lat: 0, lng: 0 },
     waypoints: [],
     travelMode: google.maps.TravelMode.DRIVING,
   };
-  const mapCenter = useMemo(() => ({ lat: 22.302711, lng: 114.177216 }), []);
-  const mapOptions = useMemo<google.maps.MapOptions>(
-    () => ({
-      zoomControl: true,
-      zoomControlOptions: {
-        position: 17.0,
-      },
-      disableDefaultUI: true,
-      clickableIcons: true,
-      scrollwheel: true,
-    }),
-    []
-  );
-  const routeState = useAppSelector((state) => state.route);
+  const [directionsFormValue, setDirectionsFormValue] =
+    useState<google.maps.DirectionsRequest>(initialDirectionFormValue);
+
   const [response, setResponse] = useState<google.maps.DirectionsResult | null>(
     null
   );
-  const [directionsFormValue, setDirectionsFormValue] =
-    useState<google.maps.DirectionsRequest>(initialDirectionFormValue);
 
   useEffect(() => {
     if (routeState.path && routeState.path.length > 0) {
@@ -105,15 +90,8 @@ export default function GoogleMapComponent() {
       directions: response,
     };
   }, [response]);
-
   return (
-    <GoogleMap
-      id="google-map"
-      options={mapOptions}
-      zoom={12}
-      center={mapCenter}
-      mapTypeId={google.maps.MapTypeId.ROADMAP}
-      mapContainerStyle={{ width: "100%", minHeight: "100vh" }}>
+    <>
       {directionsFormValue.destination !== "" &&
         directionsFormValue.origin !== "" && (
           <DirectionsService
@@ -125,6 +103,6 @@ export default function GoogleMapComponent() {
       {directionsResult.directions && (
         <DirectionsRenderer options={directionsResult} />
       )}
-    </GoogleMap>
+    </>
   );
 }

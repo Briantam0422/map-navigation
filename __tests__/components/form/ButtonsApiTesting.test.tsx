@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ButtonsApiTesting from "@/components/map-navigation/ButtonsApiTesting"; // Adjust the path as needed
+import ButtonsApiTesting from "@/components/map-navigation/form/ButtonsApiTesting"; // Adjust the path as needed
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/store/hooks";
