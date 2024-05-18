@@ -15,14 +15,14 @@ export default function Home() {
   });
   return (
     <main>
-      <Toaster />
+      <Toaster data-testid="global-toaster" />
       {isLoaded ? (
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <FormInputRoute />
-          <GoogleMapComponent />
+          <FormInputRoute data-testid="form-input-route" />
+          <GoogleMapComponent data-testid="google-map-component" />
         </div>
       ) : (
-        <Spinner />
+        <Spinner data-testid="loading-spinner" />
       )}
     </main>
   );
