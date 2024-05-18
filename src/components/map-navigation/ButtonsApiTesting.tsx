@@ -6,14 +6,16 @@ import {
   postMockRouteError,
   postMockRouteSuccess,
 } from "@/api/mock/mockRoute";
-import { DataPostRouteProps } from "@/api/route";
+import { DataPostRouteProps, RouteResponseStatus } from "@/api/route";
 import { useAppStore } from "@/store/hooks";
 import { initialRoute } from "@/store/slices/routeSlice";
 import { Divider, Button, Link } from "@nextui-org/react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function ButtonsApiTesting() {
+  const router = useRouter();
   const store = useAppStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [displayMockApiButtons, setDisplayMockApiButtons] =
@@ -30,21 +32,22 @@ export default function ButtonsApiTesting() {
       setLoading(true);
       let data = null;
       switch (getType) {
-        case "success":
+        case RouteResponseStatus.success:
           data = await getMockRouteSuccess();
           store.dispatch(initialRoute(data));
           setLoading(false);
+          router.push("#google-map");
           break;
-        case "in_progress":
+        case RouteResponseStatus.in_progress:
           data = await getMockRouteInprogress();
           resultMock.status = "error";
           resultMock.refetch();
           break;
-        case "failure":
+        case RouteResponseStatus.failure:
           data = await getMockRouteFailure();
           setLoading(false);
           break;
-        case "error":
+        case RouteResponseStatus.error:
           data = await getMockRouteError();
           setLoading(false);
           break;
@@ -99,7 +102,7 @@ export default function ButtonsApiTesting() {
         Try Mock APIs
       </Link>
       {displayMockApiButtons && (
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <Button
             isLoading={loading}
             type="button"

@@ -3,6 +3,7 @@ import {
   getRoute,
   postRoute,
   ReqPostRouteProps,
+  RouteResponseStatus,
 } from "@/api/route";
 import { Button, Card } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -14,8 +15,10 @@ import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
 import AutocompleteInputPlace from "./AutocompleteInputPlace";
 import ButtonsApiTesting from "./ButtonsApiTesting";
+import { useRouter } from "next/navigation";
 
 export default function FormInputRoute() {
+  const router = useRouter();
   const store = useAppStore();
   const routeState = useAppSelector((state) => state.route);
   const [loading, setLoading] = useState<boolean>(false);
@@ -26,8 +29,13 @@ export default function FormInputRoute() {
       setLoading(true);
       const data = await getRoute({ token: routeState.token });
       if (data) {
-        if (data.status === "in progress") {
+        if (data.status === RouteResponseStatus.in_progress) {
           result.status = "error";
+        } else if (data.status === RouteResponseStatus.success) {
+          router.push("#google-map");
+          store.dispatch(initialRoute(data));
+          setLoading(false);
+          return data;
         } else {
           store.dispatch(initialRoute(data));
           setLoading(false);
@@ -123,10 +131,10 @@ export default function FormInputRoute() {
           </div>
         </form>
       </Card>
-      {result.data?.total_distance && result.data.total_time && (
+      {routeState.total_distance > 0 && routeState.total_time > 0 && (
         <RouteInformation
-          total_distance={result.data.total_distance}
-          total_time={result.data.total_time}
+          total_distance={routeState.total_distance}
+          total_time={routeState.total_time}
         />
       )}
     </div>

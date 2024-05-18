@@ -1,5 +1,10 @@
 import { getRequest, GetRequestProps, postRequest } from "@/util/api";
-
+export const RouteResponseStatus = {
+    success : "success",
+    in_progress: "in progress",
+    failure: "failure",
+    error: "error",
+}
 export type ReqGetRouteProps = {
     token: string
 }

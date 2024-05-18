@@ -105,6 +105,7 @@ export default function GoogleMapComponent() {
 
   return (
     <GoogleMap
+      id="google-map"
       options={mapOptions}
       zoom={12}
       center={mapCenter}
