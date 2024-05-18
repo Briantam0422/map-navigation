@@ -17,6 +17,12 @@ type Waypoint = {
 };
 
 export default function GoogleMapComponent() {
+  const initialDirectionFormValue = {
+    origin: { lat: 0, lng: 0 },
+    destination: { lat: 0, lng: 0 },
+    waypoints: [],
+    travelMode: google.maps.TravelMode.DRIVING,
+  };
   const mapCenter = useMemo(() => ({ lat: 22.302711, lng: 114.177216 }), []);
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
@@ -35,12 +41,7 @@ export default function GoogleMapComponent() {
     null
   );
   const [directionsFormValue, setDirectionsFormValue] =
-    useState<google.maps.DirectionsRequest>({
-      origin: { lat: 0, lng: 0 },
-      destination: { lat: 0, lng: 0 },
-      waypoints: [],
-      travelMode: google.maps.TravelMode.DRIVING,
-    });
+    useState<google.maps.DirectionsRequest>(initialDirectionFormValue);
 
   useEffect(() => {
     if (routeState.path && routeState.path.length > 0) {
@@ -65,6 +66,8 @@ export default function GoogleMapComponent() {
         travelMode: google.maps.TravelMode.DRIVING,
       };
       setDirectionsFormValue(data);
+    } else {
+      setResponse(null);
     }
   }, [routeState.path]);
 

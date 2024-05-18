@@ -9,7 +9,7 @@ import { Button, Card } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
 import { useAppSelector, useAppStore } from "@/store/hooks";
-import { setToken, initialRoute } from "@/store/slices/routeSlice";
+import { setToken, initialRoute, resetRoute } from "@/store/slices/routeSlice";
 import toast from "react-hot-toast";
 import CardMessage from "../CardMessage";
 import RouteInformation from "./RouteInformation";
@@ -91,6 +91,7 @@ export default function FormInputRoute() {
   const onResetFormRouteRequest = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     event.currentTarget.reset();
+    store.dispatch(resetRoute());
   };
 
   return (
