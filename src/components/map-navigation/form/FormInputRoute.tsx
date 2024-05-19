@@ -133,7 +133,11 @@ export default function FormInputRoute() {
                 <CardMessage type="error" message={routeState.error} />
               )}
             <div className="flex gap-4">
-              <Button isLoading={loading} type="submit" color="primary">
+              <Button
+                isLoading={loading}
+                type="submit"
+                color="primary"
+                className="text-white">
                 Submit
               </Button>
               <Button
