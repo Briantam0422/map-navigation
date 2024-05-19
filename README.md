@@ -83,9 +83,21 @@ A map navigator for delivery services allows users to find the best path and dir
   ```
   npm i
   ```
-  * Run Project in local environment
+  * Run project in local environment
   ```
   npm run dev
+  ```
+  * Build project for production
+  ```
+  npm run build
+  ```
+  * Run unit tests
+  ```
+  npm run test
+  ```
+  * Run and watch unit tests
+  ```
+  npm run test:watch
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -126,6 +138,8 @@ The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is
 3. Reset Locations by clicking the reset button
 4. Try Mock APIs by clicking "Try Mock APIs" button. It will show mock apis options
     <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-mock-apis.png">
+5. Browser compatibility: Latest Chrome, Firefox, and Safari
+6. Mobile responsive
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
