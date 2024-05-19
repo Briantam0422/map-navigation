@@ -3,7 +3,7 @@
 <div align="center">
 
 <h3 align="center">Map Navigator</h3>
- <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/page_preview.png" width="250">
+ <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/page_preview.png">
   
   <p align="center">
     <a href="https://github.com/Briantam0422/map-navigation">
