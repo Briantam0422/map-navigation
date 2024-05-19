@@ -10,6 +10,7 @@
     <a href="https://github.com/Briantam0422/map-navigation">
     <strong>Explore the docs »</strong></a>
     <br />
+    <br />
     <a href="https://map-navigation-five.vercel.app/#google-map">View Demo</a>
   </p>
 </div>
