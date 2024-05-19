@@ -31,7 +31,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#features">Features</a></li>
   </ol>
 </details>
@@ -99,19 +98,6 @@ A map navigator for delivery services allows users to find the best path and dir
   ```
   npm run test:watch
   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-## Usage
-- Port: 3000
-- NPM Scripts
-  - dev: Used for development
-  - build: Builds next js
-  - start: Starts next js
-  - test: Runs Unit Tests
-  - test:watch: Runs and Watches Unit Tests 
-
 The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is hosted on [Vercel](https://vercel.com/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
