@@ -1,11 +1,10 @@
-
 <a name="readme-top"></a>
-
 <br />
 <div align="center">
 
 <h3 align="center">Map Navigator</h3>
-
+ ![map-navigation-preview]("https://github.com/Briantam0422/map-navigation/doc/images/page_preview.png = 250x250")
+  
   <p align="center">
     <a href="https://github.com/Briantam0422/map-navigation">
     <strong>Explore the docs »</strong></a>
@@ -23,8 +22,6 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
-      </ul>
-      <ul>
         <li><a href="#features">Features</a></li>
       </ul>
     </li>
@@ -44,7 +41,7 @@
 
 A map navigator for delivery services allows users to find the best path and directions to multiple address by entering a pick-up location and a drop-off location. It supports location search and autocomplete function.
 
-<p>App Demo for Visitors</p>
+<p>App Demo</p>
 
 * URL: https://map-navigation-five.vercel.app
 
@@ -69,6 +66,13 @@ A map navigator for delivery services allows users to find the best path and dir
 - TanStack Query
 - Google Map API
 - React Hot Toast
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FEATURES -->
+## FEATURES
+
+1. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -108,24 +112,8 @@ The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/chingu-voyages/v48-tier3-team-24.svg?style=for-the-badge
-[contributors-url]: https://github.com/chingu-voyages/v48-tier3-team-24/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/chingu-voyages/v48-tier3-team-24.svg?style=for-the-badge
-[forks-url]: https://github.com/chingu-voyages/v48-tier3-team-24/network/members
-[stars-shield]: https://img.shields.io/github/stars/chingu-voyages/v48-tier3-team-24.svg?style=for-the-badge
-[stars-url]: https://github.com/chingu-voyages/v48-tier3-team-24/stargazers
-[issues-shield]: https://img.shields.io/github/issues/chingu-voyages/v48-tier3-team-24.svg?style=for-the-badge
-[issues-url]: https://github.com/chingu-voyages/v48-tier3-team-24/issues
-[license-shield]: https://img.shields.io/github/license/chingu-voyages/v48-tier3-team-24.svg?style=for-the-badge
-[license-url]: https://github.com/chingu-voyages/v48-tier3-team-24/blob/main/LICENSE.md
-[Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
-[Nodejs-url]: https://nodejs.org/en
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Nextjs-url]: https://nextjs.org/
-[Prisma.io]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
-[Prismaio-url]: https://www.prisma.io/
-[Mysql]: https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white
-[Mysql-url]: https://www.mysql.com/
 [Tailwindcss]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwindcss-url]: https://tailwindcss.com/
 [React-query]: https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white
