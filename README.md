@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A map navigator for delivery services allows users to find the best path and directions to multiple address by entering a pick-up location and a drop-off location. It supports location search and autocomplete function.
+A map navigator for delivery services allows users to find the best path and directions to multiple addresses by entering a pick-up location and a drop-off location. It supports location search and autocomplete functions.
 
 <p>App Demo</p>
 
