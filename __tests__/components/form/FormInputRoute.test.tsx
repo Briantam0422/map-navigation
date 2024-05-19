@@ -1,16 +1,9 @@
 import "@testing-library/jest-dom";
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import FormInputRoute from "@/components/map-navigation/form/FormInputRoute";
-import ButtonsApiTesting from "@/components/map-navigation/form/ButtonsApiTesting";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { useMutation } from "@tanstack/react-query";
-import { DataPostRouteProps, postRoute } from "@/api/route";
+import { DataPostRouteProps } from "@/api/route";
 
 // Mock dependencies
 jest.mock("next/navigation", () => ({
