@@ -3,7 +3,7 @@
 <div align="center">
 
 <h3 align="center">Map Navigator</h3>
- ![map-navigation-preview]("https://github.com/Briantam0422/map-navigation/doc/images/page_preview.png = 250x250")
+ ![map-navigation-preview]("https://github.com/Briantam0422/map-navigation/doc/images/page_preview.png)
   
   <p align="center">
     <a href="https://github.com/Briantam0422/map-navigation">
