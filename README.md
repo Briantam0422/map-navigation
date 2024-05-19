@@ -3,7 +3,7 @@
 <div align="center">
 
 <h3 align="center">Map Navigator</h3>
- <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/page_preview.png">
+ <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-success.png">
   
   <p align="center">
     <a href="https://github.com/Briantam0422/map-navigation">
@@ -109,23 +109,23 @@ The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is
 
 1. Input Location
    - Enter a Pick-up location in the first search input and a drop-off location in the second search input
-     - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-panel">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-panel.png">
    - Select a location from the autocomplete dropdown list
-     - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-autocomplete">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-autocomplete.png">
 2. Search Route - Submit Request by clicking the submit button
    - Success Status
      - Show Route Information
      - Display a best delivery route
-       - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-success.png">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-success.png">
    - In Progress Status
-     - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-in_progress.png">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-in_progress.png">
    - Failure Status
-     - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-failure.png">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-failure.png">
    - Error Status
-     - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-error.png">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-error.png">
 3. Reset Locations by clicking the reset button
 4. Try Mock APIs by clicking "Try Mock APIs" button. It will show mock apis options
-   - <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-mock-apis.png">
+  <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-mock-apis.png">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
