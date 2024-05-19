@@ -26,7 +26,7 @@ export default function GoogleMapComponent({
   return (
     <>
       {isLoaded && (
-        <div data-testid="google-map">
+        <div id="google-map" data-testid="google-map">
           <GoogleMap
             options={mapOptions}
             zoom={12}
