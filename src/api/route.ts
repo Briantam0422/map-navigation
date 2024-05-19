@@ -1,4 +1,4 @@
-import { getRequest, GetRequestProps, postRequest } from "@/util/api";
+import { getRequest, GetRequestProps, postRequest } from "@/utils/api";
 export const RouteResponseStatus = {
     success : "success",
     in_progress: "in progress",

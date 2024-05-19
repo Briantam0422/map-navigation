@@ -23,11 +23,14 @@ export default function FormInputRoute() {
   const routeState = useAppSelector((state) => state.route);
   const [loading, setLoading] = useState<boolean>(false);
   const result = useQuery({
-    enabled: routeState.token != "" && routeState.token != null,
-    queryKey: ["route", routeState.token],
+    enabled:
+      routeState != undefined &&
+      routeState.token != "" &&
+      routeState.token != null,
+    queryKey: ["route", routeState?.token],
     queryFn: async () => {
       setLoading(true);
-      const data = await getRoute({ token: routeState.token });
+      const data = await getRoute({ token: routeState?.token });
       if (data) {
         switch (data.status) {
           case RouteResponseStatus.success:
@@ -62,7 +65,7 @@ export default function FormInputRoute() {
       return true;
     },
   });
-  const { mutate } = useMutation({
+  const mutation = useMutation({
     mutationFn: (route: ReqPostRouteProps) => {
       return postRoute(route);
     },
@@ -71,8 +74,10 @@ export default function FormInputRoute() {
     },
     onSuccess: async ({ token }: DataPostRouteProps) => {
       setLoading(false);
-      store.dispatch(setToken(token));
-      if (routeState.token) {
+      if (store) {
+        store.dispatch(setToken(token));
+      }
+      if (routeState && routeState.token) {
         result.refetch();
       }
     },
@@ -83,21 +88,23 @@ export default function FormInputRoute() {
     setLoading(true);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    mutate({
+    mutation.mutate({
       origin: formData.get("origin") ?? "",
       destination: formData.get("destination") ?? "",
     });
   };
   const onResetFormRouteRequest = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    event.currentTarget.reset();
-    store.dispatch(resetRoute());
+    if (store) {
+      store.dispatch(resetRoute());
+    }
   };
 
   return (
     <div className="p-10 lg:p-20">
       <Card className="p-10 mb-8">
         <form
+          data-testid="form-search-location"
           onSubmit={onSubmitFormRouteRequest}
           onReset={onResetFormRouteRequest}>
           <div className="grid grid-rows-1 gap-8">
@@ -114,15 +121,17 @@ export default function FormInputRoute() {
               label="Drop-off Location"
               placeholder="Search a drop-off location"
             />
-            {result.isFetching && (
+            {result && result.isFetching && (
               <CardMessage
                 type="warning"
                 message="Finding the best route for you. Please wait :)"
               />
             )}
-            {routeState.error != "" && routeState.error != undefined && (
-              <CardMessage type="error" message={routeState.error} />
-            )}
+            {routeState &&
+              routeState.error != "" &&
+              routeState.error != undefined && (
+                <CardMessage type="error" message={routeState.error} />
+              )}
             <div className="flex gap-4">
               <Button isLoading={loading} type="submit" color="primary">
                 Submit
@@ -139,12 +148,14 @@ export default function FormInputRoute() {
           </div>
         </form>
       </Card>
-      {routeState.total_distance > 0 && routeState.total_time > 0 && (
-        <RouteInformation
-          total_distance={routeState.total_distance}
-          total_time={routeState.total_time}
-        />
-      )}
+      {routeState &&
+        routeState.total_distance > 0 &&
+        routeState.total_time > 0 && (
+          <RouteInformation
+            total_distance={routeState.total_distance}
+            total_time={routeState.total_time}
+          />
+        )}
     </div>
   );
 }

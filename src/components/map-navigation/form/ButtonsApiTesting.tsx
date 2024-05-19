@@ -63,7 +63,7 @@ export default function ButtonsApiTesting() {
       return true;
     },
   });
-  const { mutate } = useMutation({
+  const mutation = useMutation({
     mutationFn: () => {
       switch (submitType) {
         case "success":
@@ -89,7 +89,7 @@ export default function ButtonsApiTesting() {
     setLoading(true);
     setIsSubmitSuccess(false);
     setGetType(type);
-    mutate();
+    mutation.mutate();
   };
 
   const onClickShowMockApiButtons = () => {

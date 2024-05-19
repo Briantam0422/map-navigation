@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from "@/util/api";
+import { getRequest, postRequest } from "@/utils/api";
 import { DataGetRouteProps, DataPostRouteProps } from '../route';
 
 export async function postMockRouteError() {
