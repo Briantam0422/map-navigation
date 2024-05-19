@@ -125,7 +125,7 @@ The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is
     <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-error.png">
 3. Reset Locations by clicking the reset button
 4. Try Mock APIs by clicking "Try Mock APIs" button. It will show mock apis options
-  <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-mock-apis.png">
+    <img src="https://github.com/Briantam0422/map-navigation/blob/main/doc/images/form/form-mock-apis.png">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
