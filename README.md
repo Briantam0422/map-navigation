@@ -29,6 +29,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#production-build">Production Build</a></li>
       </ul>
     </li>
     <li><a href="#features">Features</a></li>
@@ -98,6 +99,13 @@ A map navigator for delivery services allows users to find the best path and dir
   ```
   npm run test:watch
   ```
+
+### Production Build
+1. Make changes in your local branch
+2. Run `npm run build` to make sure there is no error
+3. Commit and push to the main branch
+4. Vercel will automatically build and deploy the project for us
+
 The [Next JS](https://map-navigation-five.vercel.app/) application (Frontend) is hosted on [Vercel](https://vercel.com/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
